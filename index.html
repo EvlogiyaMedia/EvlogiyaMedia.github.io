@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evlogiya Media and Communication</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="logo-section">
+        <h1 class="company-name-left">Evlogiya Media</h1>
+        <h1 class="company-name-and">and</h1>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Evlogiya Logo" class="logo">
+            </a>
+        </div>
+        <h1 class="company-name-right">Communication</h1>
+    </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
+            <h2 class="motto">ለእርስዎ ደስታ እንተጋለን !!!</h2>
+            <a href="services.html" class="cta">Learn More About Our Services</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <!-- Empty hero section, as content is moved above -->
+    </section>
+
+    <section id="contact">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p>📞 Phone: <a href="tel:+251913700232">+251913700232</a></p>
+        </div>
+    </section>
+
+    <section id="location">
+        <div class="section-content">
+            <h2>Our Location</h2>
+            <p>Addis Ababa, Ethiopia</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Follow Us on Social Media</h2>
+        <div class="social-icons">
+            <a href="https://tiktok.com/@evlogiamediacommu" class="icon" target="_blank">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://www.youtube.com/@EVLOGIAMEDIACOMMUNICATION" class="icon" target="_blank">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.instagram.com/evlogiamedia2025?igsh=MXN4YXNoeTJoZW4yYg==" class="icon" target="_blank">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const options = {
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        targetElement.classList.add('active');
+                    }
+                });
+            });
+
+            // Add fade transition for page navigation
+            document.querySelectorAll('a:not([href^="#"])').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
