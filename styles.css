@@ -1,0 +1,406 @@
+/* Reset and General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    transition: opacity 0.5s ease;
+    background: url('images/background.jpg') no-repeat center/cover fixed !important;
+    height: 100%;
+    margin: 0;
+}
+
+/* Add an overlay to the body only for index.html */
+body:not(.services-page)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Ensure all content is above the body overlay */
+body > * {
+    position: relative;
+    z-index: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 7%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5000;
+    background: none;
+}
+
+.navbar .logo-container {
+    width: 150px; /* Increased size for larger logo */
+    height: 150px; /* Equal width and height for circular shape */
+    overflow: hidden;
+    border-radius: 50%; /* Makes the container circular */
+}
+
+.navbar .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the logo image fits within the circular container */
+    cursor: pointer;
+}
+
+.navbar ul {
+    margin-top: 0;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px 16px;
+}
+
+.navbar ul li a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.4s ease;
+}
+
+.navbar ul li a:hover {
+    color: #66b0ff;
+}
+
+/* Fade Transition */
+body.fade-out {
+    opacity: 0;
+}
+
+/* Main Section */
+.main {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    z-index: 10; /* Ensure main content is above any potential overlays */
+}
+
+/* Remove the background and overlay from .main */
+.main::before {
+    display: none;
+}
+
+/* Info Section */
+.info {
+    margin-left: 7%;
+    margin-top: 6%;
+}
+
+.info h1 {
+    font-size: 65px;
+    color: #fff;
+}
+
+.info h3 {
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    color: #fff;
+}
+
+.info span {
+    color: #007bff;
+}
+
+.info .motto {
+    font-size: 2em;
+    margin: 20px 0;
+    color: #DAA520;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Image */
+.image {
+    width: 30%;
+    height: 60%;
+    position: absolute;
+    right: 100px;
+    bottom: 0;
+}
+
+.image .hero-img {
+    position: absolute;
+    height: 140%;
+    left: 40%;
+    transform: translate(-55%);
+    bottom: 0;
+    transition: left 2s ease;
+}
+
+.image:hover .hero-img {
+    left: 55%;
+}
+
+/* Section Animation */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contact and Location Sections */
+#contact, #location {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    background: url('images/image.jpg') no-repeat center/cover fixed;
+    color: #b50e0e;
+    position: relative;
+}
+
+#contact p {
+    font-size: 2em;
+    
+}
+
+#location p {
+    font-size: 2em;
+    color: #ffffff; /* or any color you prefer for the location */
+}
+
+
+#contact::before, #location::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+#contact > *, #location > * {
+    position: relative;
+    z-index: 0;
+}
+
+#location {
+    background: url('images/imagee.jpg') no-repeat center/cover fixed;
+}
+
+.section-content {
+    max-width: 600px;
+    margin-left: 50px;
+}
+
+#contact h2, #location h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    color: #B8860B		;
+}
+
+#contact a {
+    color: #c0baba;
+    font-size: 1cm;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+/* Icon styling inside section-content (contact/location) */
+.section-content i {
+    margin-right: 8px;
+    color: #11a52e; /* You can adjust this color to match your theme */
+}
+
+/* Services Section */
+.services-page {
+    background: none !important;
+}
+
+.services-page .main {
+    background: none;
+    min-height: auto;
+    padding-top: 80px;
+}
+
+.services {
+    padding: 60px 20px;
+    text-align: center;
+    background: #cd8407; /* Fully opaque white background */
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 15; /* Further increased z-index */
+    overflow: visible; /* Ensure content is not clipped */
+    /* Temporary border for debugging */
+    border: 2px solid rgb(241, 242, 242); /* Remove after confirming visibility */
+}
+
+.services h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.services p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 5;
+}
+
+footer h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .social-icons i {
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+
+footer .social-icons a:hover i {
+    color: #ffd700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 5%;
+    }
+
+    .navbar ul {
+        margin-top: 10px;
+    }
+
+    .navbar ul li {
+        padding: 8px 12px;
+    }
+
+    .info {
+        margin-left: 5%;
+        text-align: center;
+    }
+
+    .info h1 {
+        font-size: 40px;
+    }
+
+    .info h3 {
+        font-size: 16px;
+    }
+
+    .info .motto {
+        font-size: 1.5em;
+    }
+
+    .image {
+        width: 50%;
+        right: 0;
+        height: 40%;
+    }
+
+    .image .hero-img {
+        left: 50%;
+        transform: translate(-50%);
+        height: 100%;
+    }
+
+    .image:hover .hero-img {
+        left: 50%;
+    }
+
+    .section-content {
+        margin-left: 20px;
+        max-width: 100%;
+    }
+
+    .section-content h2 {
+        font-size: 2em;
+    }
+
+    .services h1 {
+        font-size: 2em;
+    }
+}

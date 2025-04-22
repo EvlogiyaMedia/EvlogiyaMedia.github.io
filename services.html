@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Evlogiya Media and Communication</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="services-page">
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Evlogiya Logo" class="logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="index.html#location">Location</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <section class="services">
+            <h1>Our Media and Communication Services</h1>
+            <p>At Evlogiya Media and Communication, we offer a range of services designed to elevate your brand and engage your audience. Explore our offerings below:</p>
+            <div class="services-container">
+                <div class="service-card">
+                    <h2>Events & Promotion</h2>
+                    <p>We organize and promote events, ensuring seamless execution and maximum audience engagement through strategic marketing and media coverage.</p>
+                </div>
+                <div class="service-card">
+                    <h2>Marketing & Branding</h2>
+                    <p>Our team develops tailored marketing campaigns and branding strategies to enhance your brand's visibility and resonance in the market.</p>
+                </div>
+                <div class="service-card">
+                    <h2>Advertising & Printing</h2>
+                    <p>We create compelling advertisements and provide high-quality printing services for banners, flyers, and other promotional materials.</p>
+                </div>
+                <div class="service-card">
+                    <h2>Trading & Consulting</h2>
+                    <p>We offer consulting services and facilitate trading opportunities to support your business growth and operational success.</p>
+                </div>
+                <div class="service-card">
+                    <h2>Multi-media Production</h2>
+                    <p>We produce high-quality video, audio, and digital content, including ads, documentaries, and social media assets, to captivate your audience.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <h2>Follow Us on Social Media</h2>
+        <div class="social-icons">
+            <a href="https://tiktok.com/@evlogia2025" target="_blank">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/evlogia2025" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@EVLOGIAMEDIA2025" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://t.me/evlogiamedia25" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://t.me/evlogiamedia" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://x.com/EvlogiaMedia" target="_blank">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/evlogiamediaandcommunication" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove fade-out class to ensure content is visible
+            document.body.classList.remove('fade-out');
+
+            // IntersectionObserver for services section
+            const sections = document.querySelectorAll('.services');
+            const options = {
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Handle all anchor links
+            document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href.includes('index.html#')) {
+                        // Cross-page anchor: navigate with fade
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 500);
+                    } else {
+                        // Same-page anchor (unlikely in services.html, but included for consistency)
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // Add fade transition for page navigation
+            document.querySelectorAll('a:not([href^="#"]):not([href*="index.html#"])').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evlogiya Media and Communication</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Evlogiya Logo" class="logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="info">
+            <h3>Welcome to <span>Evlogiya</span>.</h3>
+            <h1><span>M</span>EDIA & <span>C</span>OMMUNICATION</h1>
+            <h3>Media and communication experts from Addis Ababa, Ethiopia.<br>
+                We create impactful content to elevate your brand <br> and connect with your audience.</h3>
+            <h2 class="motto">በሀሳብ ልዕልና ወደተሻለ ከፍታ!!!</h2>
+        </div>
+
+        <div class="image">
+            <img src="images/hero-image.png" class="hero-img" alt="Hero Image">
+        </div>
+    </div>
+
+    <section id="contact">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+251913700232">+251913700232</a></p>
+            <p><i class="fas fa-phone-alt"></i> <a href="tel:+251950016161">+251950016161</a></p>
+
+        </div>
+    </section>
+
+    <section id="location">
+        <div class="section-content">
+            <h2>Our Location</h2>
+           <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Follow Us on Social Media</h2>
+        <div class="social-icons">
+            <a href="https://tiktok.com/@evlogia2025" target="_blank">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/evlogia2025" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@EVLOGIAMEDIA2025" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://t.me/evlogiamedia25" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://t.me/evlogiamedia" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://x.com/EvlogiaMedia" target="_blank">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/evlogiamediaandcommunication" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const options = {
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        targetElement.classList.add('active');
+                    }
+                });
+            });
+
+            // Add fade transition for page navigation
+            document.querySelectorAll('a:not([href^="#"])').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
