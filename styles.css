@@ -47,16 +47,16 @@ body > * {
 }
 
 .navbar .logo-container {
-    width: 150px; /* Increased size for larger logo */
-    height: 150px; /* Equal width and height for circular shape */
+    width: 150px;
+    height: 150px;
     overflow: hidden;
-    border-radius: 50%; /* Makes the container circular */
+    border-radius: 50%;
 }
 
 .navbar .logo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the logo image fits within the circular container */
+    object-fit: cover;
     cursor: pointer;
 }
 
@@ -94,9 +94,9 @@ body.fade-out {
     position: relative;
     font-family: sans-serif;
     display: flex;
-    flex-direction: column;
-    padding-top: 80px;
-    z-index: 10; /* Ensure main content is above any potential overlays */
+    flex-direction: row; /* Default to row for desktop */
+    padding-top: 200px; /* Increased to account for navbar height */
+    z-index: 10;
 }
 
 /* Remove the background and overlay from .main */
@@ -108,6 +108,7 @@ body.fade-out {
 .info {
     margin-left: 7%;
     margin-top: 6%;
+    flex: 1; /* Take available space */
 }
 
 .info h1 {
@@ -137,22 +138,19 @@ body.fade-out {
 .image {
     width: 30%;
     height: 60%;
-    position: absolute;
-    right: 100px;
-    bottom: 0;
+    position: relative; /* Changed from absolute to prevent overlap */
+    align-self: flex-end; /* Align to bottom of flex container */
 }
 
 .image .hero-img {
-    position: absolute;
-    height: 140%;
-    left: 40%;
-    transform: translate(-55%);
-    bottom: 0;
-    transition: left 2s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
 .image:hover .hero-img {
-    left: 55%;
+    transform: scale(1.05); /* Subtle scale effect instead of left movement */
 }
 
 /* Section Animation */
@@ -183,14 +181,12 @@ section.active {
 
 #contact p {
     font-size: 2em;
-    
 }
 
 #location p {
     font-size: 2em;
-    color: #ffffff; /* or any color you prefer for the location */
+    color: #ffffff;
 }
-
 
 #contact::before, #location::before {
     content: '';
@@ -215,18 +211,19 @@ section.active {
 .section-content {
     max-width: 600px;
     margin-left: 50px;
+    padding: 20px; /* Added padding for mobile */
 }
 
 #contact h2, #location h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    color: #B8860B		;
+    color: #B8860B;
 }
 
 #contact a {
     color: #c0baba;
-    font-size: 1cm;
+    font-size: 1em; /* Reduced from 1cm for consistency */
     text-decoration: none;
 }
 
@@ -234,10 +231,10 @@ section.active {
     text-decoration: underline;
 }
 
-/* Icon styling inside section-content (contact/location) */
+/* Icon styling inside section-content */
 .section-content i {
     margin-right: 8px;
-    color: #11a52e; /* You can adjust this color to match your theme */
+    color: #11a52e;
 }
 
 /* Services Section */
@@ -248,20 +245,18 @@ section.active {
 .services-page .main {
     background: none;
     min-height: auto;
-    padding-top: 80px;
+    padding-top: 200px; /* Match index.html */
 }
 
 .services {
     padding: 60px 20px;
     text-align: center;
-    background: #cd8407; /* Fully opaque white background */
+    background: #cd8407;
     min-height: 100vh;
     width: 100%;
     position: relative;
-    z-index: 15; /* Further increased z-index */
-    overflow: visible; /* Ensure content is not clipped */
-    /* Temporary border for debugging */
-    border: 2px solid rgb(241, 242, 242); /* Remove after confirming visibility */
+    z-index: 15;
+    overflow: visible;
 }
 
 .services h1 {
@@ -278,7 +273,7 @@ section.active {
 
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced min width for mobile */
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -346,20 +341,33 @@ footer .social-icons a:hover i {
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Center items for better mobile layout */
         padding: 15px 5%;
+    }
+
+    .navbar .logo-container {
+        width: 100px; /* Smaller logo on mobile */
+        height: 100px;
     }
 
     .navbar ul {
         margin-top: 10px;
+        text-align: center;
     }
 
     .navbar ul li {
         padding: 8px 12px;
+        display: block; /* Stack nav items vertically */
+    }
+
+    .main {
+        flex-direction: column; /* Stack info and image vertically */
+        padding-top: 150px; /* Adjust for smaller navbar */
+        padding-bottom: 20px;
     }
 
     .info {
-        margin-left: 5%;
+        margin: 20px 5%;
         text-align: center;
     }
 
@@ -376,31 +384,86 @@ footer .social-icons a:hover i {
     }
 
     .image {
-        width: 50%;
-        right: 0;
-        height: 40%;
+        width: 80%; /* Full width on mobile */
+        height: auto;
+        position: relative;
+        margin: 20px auto; /* Center the image */
     }
 
     .image .hero-img {
-        left: 50%;
-        transform: translate(-50%);
-        height: 100%;
+        width: 100%;
+        height: auto;
+        position: relative;
+        transform: none; /* Remove transform for mobile */
     }
 
     .image:hover .hero-img {
-        left: 50%;
+        transform: scale(1.05); /* Keep subtle hover effect */
     }
 
     .section-content {
         margin-left: 20px;
-        max-width: 100%;
+        max-width: 90%;
+        text-align: center;
     }
 
     .section-content h2 {
         font-size: 2em;
     }
 
+    #contact p, #location p {
+        font-size: 1.5em; /* Slightly smaller for mobile */
+    }
+
     .services h1 {
         font-size: 2em;
+    }
+
+    .services-container {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    .services-page .main {
+        padding-top: 150px; /* Match index.html */
+    }
+}
+
+/* Additional media query for very small screens */
+@media (max-width: 480px) {
+    .info h1 {
+        font-size: 30px;
+    }
+
+    .info h3 {
+        font-size: 14px;
+    }
+
+    .info .motto {
+        font-size: 1.2em;
+    }
+
+    .navbar ul li a {
+        font-size: 14px;
+    }
+
+    .section-content {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    #contact h2, #location h2 {
+        font-size: 1.8em;
+    }
+
+    #contact p, #location p {
+        font-size: 1.2em;
+    }
+
+    .services h1 {
+        font-size: 1.8em;
+    }
+
+    .services p {
+        font-size: 1em;
     }
 }
