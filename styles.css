@@ -9,10 +9,11 @@ html, body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
     background: url('images/background.jpg') no-repeat center/cover fixed !important;
     height: 100%;
     margin: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Add an overlay to the body only for index.html */
@@ -38,7 +39,7 @@ body > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 7%;
+    padding: 1rem 7%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -61,17 +62,18 @@ body > * {
 }
 
 .navbar ul {
-    margin-top: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar ul li {
     list-style: none;
     display: inline-block;
-    padding: 10px 16px;
+    padding: 0.5rem 1rem;
 }
 
 .navbar ul li a {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
@@ -87,16 +89,17 @@ body.fade-out {
     opacity: 0;
 }
 
-/* Main Section */
+/* Main Section (Home Page) */
 .main {
     width: 100%;
     min-height: 100vh;
     position: relative;
     font-family: sans-serif;
     display: flex;
-    flex-direction: row; /* Default to row for desktop */
-    padding-top: 200px; /* Increased to account for navbar height */
+    flex-direction: row;
+    padding-top: 12rem;
     z-index: 10;
+    align-items: center;
 }
 
 /* Remove the background and overlay from .main */
@@ -104,23 +107,24 @@ body.fade-out {
     display: none;
 }
 
-/* Info Section */
+/* Info Section (Home Page) */
 .info {
     margin-left: 7%;
     margin-top: 6%;
-    flex: 1; /* Take available space */
+    flex: 1;
+    padding: 1rem;
 }
 
 .info h1 {
-    font-size: 65px;
+    font-size: 4vw;
     color: #fff;
-    word-wrap: break-word; /* Prevent text overflow */
+    word-wrap: break-word;
 }
 
 .info h3 {
-    font-size: 18px;
+    font-size: 1.2rem;
     letter-spacing: 1px;
-    line-height: 24px;
+    line-height: 1.5;
     color: #fff;
 }
 
@@ -129,19 +133,21 @@ body.fade-out {
 }
 
 .info .motto {
-    font-size: 2em;
-    margin: 20px 0;
+    font-size: 2rem;
+    margin: 1rem 0;
     color: #DAA520;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    word-wrap: break-word; /* Prevent text overflow */
+    word-wrap: break-word;
 }
 
-/* Hero Image */
+/* Hero Image (Home Page) */
 .image {
     width: 30%;
     height: 60%;
-    position: relative; /* Changed from absolute to prevent overlap */
-    align-self: flex-end; /* Align to bottom of flex container */
+    position: relative;
+    align-self: flex-end;
+    padding: 1rem;
+    cursor: pointer; /* Indicate interactivity */
 }
 
 .image .hero-img {
@@ -149,10 +155,26 @@ body.fade-out {
     height: 100%;
     object-fit: contain;
     transition: transform 0.3s ease;
+    animation: moveLeftRight 3s ease-in-out infinite; /* Add automatic left-to-right animation */
 }
 
-.image:hover .hero-img {
-    transform: scale(1.05); /* Subtle scale effect instead of left movement */
+/* Animation for left-to-right movement */
+@keyframes moveLeftRight {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px); /* Move 20px to the right */
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+    }
+}
+
+/* Hover and touch effect */
+.image:hover .hero-img,
+.image.touched .hero-img {
+    transform: scale(1.05) translateX(0); /* Scale on hover/touch, override animation momentarily */
 }
 
 /* Section Animation */
@@ -175,19 +197,21 @@ section.active {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 60px 20px;
+    padding: 4rem 1rem;
     background: url('images/image.jpg') no-repeat center/cover fixed;
     color: #b50e0e;
     position: relative;
 }
 
 #contact p {
-    font-size: 2em;
+    font-size: 2rem;
+    word-wrap: break-word;
 }
 
 #location p {
-    font-size: 2em;
+    font-size: 2rem;
     color: #ffffff;
+    word-wrap: break-word;
 }
 
 #contact::before, #location::before {
@@ -212,20 +236,20 @@ section.active {
 
 .section-content {
     max-width: 600px;
-    margin-left: 50px;
-    padding: 20px; /* Added padding for mobile */
+    margin-left: 2rem;
+    padding: 1rem;
 }
 
 #contact h2, #location h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     color: #B8860B;
 }
 
 #contact a {
     color: #c0baba;
-    font-size: 1em; /* Reduced from 1cm for consistency */
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -235,7 +259,7 @@ section.active {
 
 /* Icon styling inside section-content */
 .section-content i {
-    margin-right: 8px;
+    margin-right: 0.5rem;
     color: #11a52e;
 }
 
@@ -247,11 +271,11 @@ section.active {
 .services-page .main {
     background: none;
     min-height: auto;
-    padding-top: 200px; /* Match index.html */
+    padding-top: 12rem;
 }
 
 .services {
-    padding: 60px 20px;
+    padding: 4rem 1rem;
     text-align: center;
     background: #cd8407;
     min-height: 100vh;
@@ -262,28 +286,28 @@ section.active {
 }
 
 .services h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     color: #007bff;
 }
 
 .services p {
-    font-size: 1.2em;
-    margin-bottom: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
     color: #333;
 }
 
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced min width for mobile */
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .service-card {
     background: #d1cdcd;
-    padding: 10px;
+    padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
@@ -294,20 +318,20 @@ section.active {
 }
 
 .service-card h2 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
 
 .service-card p {
-    font-size: 1em;
+    font-size: 1rem;
     color: #666;
 }
 
 /* Footer Styles */
 footer {
     background: rgba(0, 0, 0, 0.9);
-    padding: 30px;
+    padding: 2rem;
     text-align: center;
     color: #fff;
     position: relative;
@@ -315,14 +339,14 @@ footer {
 }
 
 footer h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
 }
 
 footer .social-icons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 1rem;
 }
 
 footer .social-icons a {
@@ -331,7 +355,7 @@ footer .social-icons a {
 }
 
 footer .social-icons i {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     transition: color 0.3s;
 }
 
@@ -343,137 +367,246 @@ footer .social-icons a:hover i {
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        align-items: center; /* Center items for better mobile layout */
-        padding: 10px 5%;
+        align-items: center;
+        padding: 1rem 5%;
     }
 
     .navbar .logo-container {
-        width: 80px; /* Smaller logo on mobile */
+        width: 80px;
         height: 80px;
     }
 
     .navbar ul {
-        margin-top: 15px;
+        margin-top: 1rem;
         width: 100%;
         text-align: center;
     }
 
     .navbar ul li {
-        display: block; /* Stack nav items vertically */
-        padding: 10px 0; /* More vertical spacing */
+        display: block;
+        padding: 0.5rem 0;
     }
 
     .navbar ul li a {
-        font-size: 14px; /* Smaller font size for mobile */
+        font-size: 0.9rem;
     }
 
     .main {
-        flex-direction: column; /* Stack info and image vertically */
-        padding-top: 120px; /* Adjust for smaller navbar */
-        padding-bottom: 20px;
-        align-items: center; /* Center content */
+        flex-direction: column;
+        padding-top: 8rem;
+        padding-bottom: 2rem;
+        align-items: center;
     }
 
     .info {
-        margin: 20px 5%;
+        margin: 1rem 5%;
         text-align: center;
-        width: 90%; /* Ensure it doesn't overflow */
+        width: 90%;
     }
 
     .info h1 {
-        font-size: 28px; /* Smaller for mobile */
+        font-size: 5vw;
         word-wrap: break-word;
     }
 
     .info h3 {
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     .info .motto {
-        font-size: 1em; /* Smaller motto text */
+        font-size: 1.2rem;
         word-wrap: break-word;
     }
 
     .image {
-        width: 60%; /* Slightly smaller to fit better */
+        width: 50%;
         height: auto;
-        margin: 20px auto; /* Center the image */
+        margin: 1rem auto;
     }
 
     .image .hero-img {
         width: 100%;
         height: auto;
-        position: relative;
-        transform: none; /* Remove transform for mobile */
     }
 
-    .image:hover .hero-img {
-        transform: scale(1.05); /* Keep subtle hover effect */
+    #contact, #location {
+        padding: 3rem 1rem;
+        align-items: center;
     }
 
     .section-content {
-        margin-left: 20px;
+        margin-left: 0;
         max-width: 90%;
         text-align: center;
     }
 
-    .section-content h2 {
-        font-size: 2em;
-    }
-
-    #contact p, #location p {
-        font-size: 1.5em; /* Slightly smaller for mobile */
-    }
-
-    .services h1 {
-        font-size: 2em;
-    }
-
-    .services-container {
-        grid-template-columns: 1fr; /* Single column on mobile */
-    }
-
-    .services-page .main {
-        padding-top: 150px; /* Match index.html */
-    }
-}
-
-/* Additional media query for very small screens */
-@media (max-width: 480px) {
-    .info h1 {
-        font-size: 24px;
-    }
-
-    .info h3 {
-        font-size: 12px;
-    }
-
-    .info .motto {
-        font-size: 0.9em;
-    }
-
-    .navbar ul li a {
-        font-size: 12px;
-    }
-
-    .section-content {
-        margin: 10px;
-        padding: 15px;
-    }
-
     #contact h2, #location h2 {
-        font-size: 1.8em;
+        font-size: 2rem;
     }
 
     #contact p, #location p {
-        font-size: 1.2em;
+        font-size: 1.5rem;
+    }
+
+    .services {
+        padding: 3rem 1rem;
     }
 
     .services h1 {
-        font-size: 1.8em;
+        font-size: 2rem;
     }
 
     .services p {
-        font-size: 1em;
+        font-size: 1rem;
+    }
+
+    .services-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .service-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+    }
+
+    .services-page .main {
+        padding-top: 8rem;
+    }
+
+    footer h2 {
+        font-size: 1.5rem;
+    }
+
+    footer .social-icons i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Additional Breakpoint for Medium-Small Screens */
+@media (max-width: 600px) {
+    .navbar .logo-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .navbar ul li a {
+        font-size: 0.8rem;
+    }
+
+    .main {
+        padding-top: 6rem;
+    }
+
+    .info h1 {
+        font-size: 4.5vw;
+    }
+
+    .info h3 {
+        font-size: 0.9rem;
+    }
+
+    .info .motto {
+        font-size: 1rem;
+    }
+
+    .image {
+        width: 40%;
+    }
+
+    #contact h2, #location h2 {
+        font-size: 1.8rem;
+    }
+
+    #contact p, #location p {
+        font-size: 1.2rem;
+    }
+
+    .services h1 {
+        font-size: 1.8rem;
+    }
+
+    .services p {
+        font-size: 0.9rem;
+    }
+
+    .service-card h2 {
+        font-size: 1.3rem;
+    }
+
+    footer h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Additional Breakpoint for Very Small Screens */
+@media (max-width: 400px) {
+    .navbar .logo-container {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar ul li a {
+        font-size: 0.7rem;
+    }
+
+    .main {
+        padding-top: 5rem;
+    }
+
+    .info h1 {
+        font-size: 4vw;
+    }
+
+    .info h3 {
+        font-size: 0.8rem;
+    }
+
+    .info .motto {
+        font-size: 0.9rem;
+    }
+
+    .image {
+        width: 35%;
+    }
+
+    .section-content {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+
+    #contact h2, #location h2 {
+        font-size: 1.5rem;
+    }
+
+    #contact p, #location p {
+        font-size: 1rem;
+    }
+
+    .services h1 {
+        font-size: 1.5rem;
+    }
+
+    .services p {
+        font-size: 0.8rem;
+    }
+
+    .service-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .service-card p {
+        font-size: 0.8rem;
+    }
+
+    footer h2 {
+        font-size: 1.2rem;
+    }
+
+    footer .social-icons i {
+        font-size: 1rem;
     }
 }
