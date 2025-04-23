@@ -15,7 +15,12 @@
                 <img src="images/logo.png" alt="Evlogiya Logo" class="logo">
             </a>
         </div>
-        <ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -25,7 +30,7 @@
 
     <div class="main">
         <div class="info">
-            <h3>Welcome to <span>Evlogiya</span>.</h3>
+            <h3>Welcome to <span class="evlogiya-bold">Evlogiya</span>.</h3>
             <h1><span>M</span>EDIA & <span>C</span>OMMUNICATION</h1>
             <h3>Media and communication experts from Addis Ababa, Ethiopia.<br>
                 We create impactful content to elevate your brand <br> and connect with your audience.</h3>
@@ -37,19 +42,46 @@
         </div>
     </div>
 
+    <!-- Services Section -->
+    <section class="services">
+        <h1>Our Media and Communication Services</h1>
+        <p>At Evlogiya Media and Communication, we offer a range of services designed to elevate your brand and engage your audience. Explore our offerings below:</p>
+        <div class="services-container">
+            <div class="service-card">
+                <h2>Events & Promotion</h2>
+                <p>We organize and promote events, ensuring seamless execution and maximum audience engagement through strategic marketing and media coverage.</p>
+            </div>
+            <div class="service-card">
+                <h2>Marketing & Branding</h2>
+                <p>Our team develops tailored marketing campaigns and branding strategies to enhance your brand's visibility and resonance in the market.</p>
+            </div>
+            <div class="service-card">
+                <h2>Advertising & Printing</h2>
+                <p>We create compelling advertisements and provide high-quality printing services for banners, flyers, and other promotional materials.</p>
+            </div>
+            <div class="service-card">
+                <h2>Trading & Consulting</h2>
+                <p>We offer consulting services and facilitate trading opportunities to support your business growth and operational success.</p>
+            </div>
+            <div class="service-card">
+                <h2>Multi-media Production</h2>
+                <p>We produce high-quality video, audio, and digital content, including ads, documentaries, and social media assets, to captivate your audience.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="section-content">
             <h2>Contact Us</h2>
             <p><i class="fas fa-phone-alt"></i> <a href="tel:+251913700232">+251913700232</a></p>
             <p><i class="fas fa-phone-alt"></i> <a href="tel:+251950016161">+251950016161</a></p>
-
         </div>
     </section>
 
     <section id="location">
         <div class="section-content">
             <h2>Our Location</h2>
-           <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+            <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
         </div>
     </section>
 
@@ -109,6 +141,8 @@
                         targetElement.scrollIntoView({ behavior: 'smooth' });
                         targetElement.classList.add('active');
                     }
+                    // Close the hamburger menu after clicking a link (for mobile)
+                    document.querySelector('.nav-links').classList.remove('nav-active');
                 });
             });
 
@@ -121,7 +155,17 @@
                     setTimeout(() => {
                         window.location.href = href;
                     }, 500);
+                    // Close the hamburger menu after clicking a link (for mobile)
+                    document.querySelector('.nav-links').classList.remove('nav-active');
                 });
+            });
+
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
             });
         });
     </script>
