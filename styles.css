@@ -13,7 +13,6 @@ html, body {
     background: url('images/background.jpg') no-repeat center/cover fixed !important;
     height: 100%;
     margin: 0;
-    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Add an overlay to the body only for index.html */
@@ -61,18 +60,36 @@ body > * {
     cursor: pointer;
 }
 
-.navbar ul {
-    margin: 0;
-    padding: 0;
+/* Hamburger Icon Styles */
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
 }
 
-.navbar ul li {
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Navigation Links */
+.navbar .nav-links {
+    margin: 0;
+    padding: 0;
     list-style: none;
-    display: inline-block;
+    display: flex;
+}
+
+.navbar .nav-links li {
     padding: 0.5rem 1rem;
 }
 
-.navbar ul li a {
+.navbar .nav-links li a {
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
@@ -80,7 +97,7 @@ body > * {
     transition: color 0.4s ease;
 }
 
-.navbar ul li a:hover {
+.navbar .nav-links li a:hover {
     color: #66b0ff;
 }
 
@@ -92,7 +109,7 @@ body.fade-out {
 /* Main Section (Home Page) */
 .main {
     width: 100%;
-    min-height: 100vh;
+    min-height: 815px;
     position: relative;
     font-family: sans-serif;
     display: flex;
@@ -128,6 +145,11 @@ body.fade-out {
     color: #fff;
 }
 
+.info h3 .evlogiya-bold {
+    font-weight: 900;
+    font-size: 1.4rem; /* Consistent font size for all devices */
+}
+
 .info span {
     color: #007bff;
 }
@@ -147,7 +169,7 @@ body.fade-out {
     position: relative;
     align-self: flex-end;
     padding: 1rem;
-    cursor: pointer; /* Indicate interactivity */
+    cursor: pointer;
 }
 
 .image .hero-img {
@@ -155,7 +177,7 @@ body.fade-out {
     height: 100%;
     object-fit: contain;
     transition: transform 0.3s ease;
-    animation: moveLeftRight 3s ease-in-out infinite; /* Add automatic left-to-right animation */
+    animation: moveLeftRight 3s ease-in-out infinite;
 }
 
 /* Animation for left-to-right movement */
@@ -164,17 +186,17 @@ body.fade-out {
         transform: translateX(0);
     }
     50% {
-        transform: translateX(20px); /* Move 20px to the right */
+        transform: translateX(20px);
     }
     100% {
-        transform: translateX(0); /* Return to original position */
+        transform: translateX(0);
     }
 }
 
 /* Hover and touch effect */
 .image:hover .hero-img,
 .image.touched .hero-img {
-    transform: scale(1.05) translateX(0); /* Scale on hover/touch, override animation momentarily */
+    transform: scale(1.05) translateX(0);
 }
 
 /* Section Animation */
@@ -189,10 +211,10 @@ section.active {
     transform: translateY(0);
 }
 
-/* Contact and Location Sections */
+/*ringar and Location Sections */
 #contact, #location {
     width: 100%;
-    min-height: 100vh;
+    min-height: 815px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -270,7 +292,7 @@ section.active {
 
 .services-page .main {
     background: none;
-    min-height: auto;
+    min-height: 815px;
     padding-top: 12rem;
 }
 
@@ -278,7 +300,7 @@ section.active {
     padding: 4rem 1rem;
     text-align: center;
     background: #cd8407;
-    min-height: 100vh;
+    min-height: 815px;
     width: 100%;
     position: relative;
     z-index: 15;
@@ -363,81 +385,109 @@ footer .social-icons a:hover i {
     color: #ffd700;
 }
 
-/* Responsive Design */
+/* Responsive Design - Adjustments for Mobile */
 @media (max-width: 768px) {
+    /* Adjust min-height to viewport height for mobile */
+    .main {
+        min-height: 100vh;
+        padding-top: 8rem;
+    }
+
+    .services-page .main {
+        min-height: 100vh;
+        padding-top: 8rem;
+    }
+
+    #contact, #location {
+        min-height: 100vh;
+        padding: 3rem 0.5rem;
+    }
+
+    .services {
+        min-height: 100vh;
+        padding: 3rem 0.5rem;
+    }
+
+    /* Navbar adjustments for mobile */
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 5%;
+        padding: 0.5rem 5%;
+        flex-wrap: wrap;
     }
 
     .navbar .logo-container {
-        width: 80px;
-        height: 80px;
+        width: 120px; /* Increased from 100px */
+        height: 120px; /* Increased from 100px */
     }
 
-    .navbar ul {
-        margin-top: 1rem;
-        width: 100%;
-        text-align: center;
+    /* Show hamburger icon on mobile */
+    .hamburger {
+        display: flex;
     }
 
-    .navbar ul li {
-        display: block;
-        padding: 0.5rem 0;
-    }
-
-    .navbar ul li a {
-        font-size: 0.9rem;
-    }
-
-    .main {
+    /* Hide nav links by default on mobile */
+    .navbar .nav-links {
+        display: none;
         flex-direction: column;
-        padding-top: 8rem;
-        padding-bottom: 2rem;
-        align-items: center;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 1rem 0;
     }
 
-    .info {
-        margin: 1rem 5%;
+    /* Show nav links when active */
+    .navbar .nav-links.nav-active {
+        display: flex;
+    }
+
+    .navbar .nav-links li {
+        padding: 0.5rem 5%;
         text-align: center;
-        width: 90%;
+    }
+
+    .navbar .nav-links li a {
+        font-size: 1rem;
+        color: #fff;
+    }
+
+    /* Adjust info section for better spacing and visual hierarchy */
+    .info {
+        margin-left: 5%;
+        margin-top: 5%;
+        padding: 0.5rem;
     }
 
     .info h1 {
-        font-size: 5vw;
-        word-wrap: break-word;
+        font-size: 2rem;
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .info h3 {
         font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+
+    .info h3 .evlogiya-bold {
+        font-weight: 900;
     }
 
     .info .motto {
-        font-size: 1.2rem;
-        word-wrap: break-word;
+        font-size: 1.5rem;
     }
 
+    /* Increase hero image size on mobile */
     .image {
-        width: 50%;
-        height: auto;
-        margin: 1rem auto;
-    }
-
-    .image .hero-img {
-        width: 100%;
-        height: auto;
-    }
-
-    #contact, #location {
-        padding: 3rem 1rem;
-        align-items: center;
+        width: 40%;
+        height: 70%;
+        padding: 0.5rem;
     }
 
     .section-content {
-        margin-left: 0;
-        max-width: 90%;
-        text-align: center;
+        margin-left: 1rem;
+        max-width: 500px;
     }
 
     #contact h2, #location h2 {
@@ -446,10 +496,6 @@ footer .social-icons a:hover i {
 
     #contact p, #location p {
         font-size: 1.5rem;
-    }
-
-    .services {
-        padding: 3rem 1rem;
     }
 
     .services h1 {
@@ -461,7 +507,6 @@ footer .social-icons a:hover i {
     }
 
     .services-container {
-        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
@@ -473,10 +518,6 @@ footer .social-icons a:hover i {
         font-size: 0.9rem;
     }
 
-    .services-page .main {
-        padding-top: 8rem;
-    }
-
     footer h2 {
         font-size: 1.5rem;
     }
@@ -486,15 +527,15 @@ footer .social-icons a:hover i {
     }
 }
 
-/* Additional Breakpoint for Medium-Small Screens */
-@media (max-width: 600px) {
+/* Very Small Screens */
+@media (max-width: 480px) {
     .navbar .logo-container {
-        width: 60px;
-        height: 60px;
+        width: 100px; /* Increased from 80px */
+        height: 100px; /* Increased from 80px */
     }
 
-    .navbar ul li a {
-        font-size: 0.8rem;
+    .navbar .nav-links li a {
+        font-size: 0.9rem;
     }
 
     .main {
@@ -502,100 +543,49 @@ footer .social-icons a:hover i {
     }
 
     .info h1 {
-        font-size: 4.5vw;
+        font-size: 1.8rem;
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .info h3 {
         font-size: 0.9rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+
+    .info h3 .evlogiya-bold {
+        font-weight: 900;
     }
 
     .info .motto {
-        font-size: 1rem;
-    }
-
-    .image {
-        width: 40%;
-    }
-
-    #contact h2, #location h2 {
-        font-size: 1.8rem;
-    }
-
-    #contact p, #location p {
         font-size: 1.2rem;
     }
 
-    .services h1 {
-        font-size: 1.8rem;
-    }
-
-    .services p {
-        font-size: 0.9rem;
-    }
-
-    .service-card h2 {
-        font-size: 1.3rem;
-    }
-
-    footer h2 {
-        font-size: 1.3rem;
-    }
-}
-
-/* Additional Breakpoint for Very Small Screens */
-@media (max-width: 400px) {
-    .navbar .logo-container {
-        width: 50px;
-        height: 50px;
-    }
-
-    .navbar ul li a {
-        font-size: 0.7rem;
-    }
-
-    .main {
-        padding-top: 5rem;
-    }
-
-    .info h1 {
-        font-size: 4vw;
-    }
-
-    .info h3 {
-        font-size: 0.8rem;
-    }
-
-    .info .motto {
-        font-size: 0.9rem;
-    }
-
+    /* Adjust hero image size for very small screens */
     .image {
         width: 35%;
-    }
-
-    .section-content {
-        margin: 0.5rem;
-        padding: 1rem;
+        height: 60%;
     }
 
     #contact h2, #location h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     #contact p, #location p {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .services h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .services p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .service-card h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .service-card p {
@@ -603,7 +593,7 @@ footer .social-icons a:hover i {
     }
 
     footer h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     footer .social-icons i {
