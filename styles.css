@@ -299,7 +299,7 @@ section.active {
 .services {
     padding: 4rem 1rem;
     text-align: center;
-    background: #cd8407;
+    background: #030302;
     min-height: 815px;
     width: 100%;
     position: relative;
@@ -316,7 +316,7 @@ section.active {
 .services p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #333;
+    color: #e9d9d;
 }
 
 .services-container {
