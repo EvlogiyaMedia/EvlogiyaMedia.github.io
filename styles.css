@@ -114,6 +114,7 @@ body.fade-out {
 .info h1 {
     font-size: 65px;
     color: #fff;
+    word-wrap: break-word; /* Prevent text overflow */
 }
 
 .info h3 {
@@ -132,6 +133,7 @@ body.fade-out {
     margin: 20px 0;
     color: #DAA520;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    word-wrap: break-word; /* Prevent text overflow */
 }
 
 /* Hero Image */
@@ -342,51 +344,59 @@ footer .social-icons a:hover i {
     .navbar {
         flex-direction: column;
         align-items: center; /* Center items for better mobile layout */
-        padding: 15px 5%;
+        padding: 10px 5%;
     }
 
     .navbar .logo-container {
-        width: 100px; /* Smaller logo on mobile */
-        height: 100px;
+        width: 80px; /* Smaller logo on mobile */
+        height: 80px;
     }
 
     .navbar ul {
-        margin-top: 10px;
+        margin-top: 15px;
+        width: 100%;
         text-align: center;
     }
 
     .navbar ul li {
-        padding: 8px 12px;
         display: block; /* Stack nav items vertically */
+        padding: 10px 0; /* More vertical spacing */
+    }
+
+    .navbar ul li a {
+        font-size: 14px; /* Smaller font size for mobile */
     }
 
     .main {
         flex-direction: column; /* Stack info and image vertically */
-        padding-top: 150px; /* Adjust for smaller navbar */
+        padding-top: 120px; /* Adjust for smaller navbar */
         padding-bottom: 20px;
+        align-items: center; /* Center content */
     }
 
     .info {
         margin: 20px 5%;
         text-align: center;
+        width: 90%; /* Ensure it doesn't overflow */
     }
 
     .info h1 {
-        font-size: 40px;
+        font-size: 28px; /* Smaller for mobile */
+        word-wrap: break-word;
     }
 
     .info h3 {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .info .motto {
-        font-size: 1.5em;
+        font-size: 1em; /* Smaller motto text */
+        word-wrap: break-word;
     }
 
     .image {
-        width: 80%; /* Full width on mobile */
+        width: 60%; /* Slightly smaller to fit better */
         height: auto;
-        position: relative;
         margin: 20px auto; /* Center the image */
     }
 
@@ -431,19 +441,19 @@ footer .social-icons a:hover i {
 /* Additional media query for very small screens */
 @media (max-width: 480px) {
     .info h1 {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .info h3 {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .info .motto {
-        font-size: 1.2em;
+        font-size: 0.9em;
     }
 
     .navbar ul li a {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .section-content {
